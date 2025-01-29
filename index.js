@@ -20,7 +20,7 @@ const corsOptions = {
 connectMongoDB();
 
 // Middlewares
-app.use(cors(corsOptions)); // Apply CORS with the configured options
+app.use(cors()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger);
