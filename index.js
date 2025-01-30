@@ -12,7 +12,14 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-	origin: process.env.CORS_ORIGIN, // Use the origin from .env
+	origin: (origin, callback) => {
+		const allowedOrigins = process.env.CORS_ORIGIN.split(",");
+		if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+			callback(null, true); // Allow the request
+		} else {
+			callback(new Error("Not allowed by CORS")); // Block the request
+		}
+	},
 	methods: "GET,POST,PUT,DELETE",
 	allowedHeaders: "Content-Type, Authorization",
 };
