@@ -17,13 +17,14 @@ const corsOptions = {
 	allowedHeaders: "Content-Type, Authorization",
 };
 
-connectMongoDB();
-
-// Middlewares
-app.use(cors()); 
+// Middleware
+app.use(cors(corsOptions)); // Apply CORS with the defined options
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger);
+
+// Connect to MongoDB
+connectMongoDB();
 
 // Routes
 app.use("/auth/admin", adminRoutes);

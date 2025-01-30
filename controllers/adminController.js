@@ -38,7 +38,7 @@ export const registerAdmin = async (req, res) => {
 				name: admin.collegeName,
 				role: admin.role,
 			},
-			token: generateToken(admin._id), 
+			token: generateToken(admin._id),
 		});
 	} catch (error) {
 		console.error(error);
@@ -72,10 +72,9 @@ export const loginAdmin = async (req, res) => {
 
 		// Send success message with token
 		res.status(200).json({
-			_id: admin._id,
+			id: admin._id,
 			email: admin.email,
-			collegeName: admin.collegeName,
-			phone: admin.phone,
+			name: admin.collegeName,
 			role: admin.role,
 			token: generateToken(admin._id), // Send JWT token
 		});
